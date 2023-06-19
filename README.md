@@ -1,5 +1,6 @@
 # ezpz
 
+
 ## **Requirements**
 * Python 3 installed
 * There are currently no additional install requirements.
@@ -21,9 +22,9 @@
 To generate raider loot statistics using `generate_raider_csv.py`, perform the following steps:
 
 ### **Prerequisites**
-1. Make sure all raiders of interest are members of the `MAIN_RAID_GROUP` raid group.
+1. Make sure all raiders of interest are members of the `MAIN_RAID_GROUP` raid group in TMB.
     * This can be done at https://thatsmybis.com/8953/ez-pz/raid-groups/10584/characters/general
-2. Make sure all loot is imported
+2. Make sure all loot is imported into TMB.
 
 ### **Manual steps needed per run**
 1. Export TMB json blob
