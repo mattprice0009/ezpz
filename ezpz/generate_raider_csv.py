@@ -12,14 +12,18 @@ TODO:
 
 # TODO: Move to constants file
 MAIN_RAID_GROUP = 'Attendance'
+# TODO: Move to CLI arg
 OUTPUT_FP = 'raider_data.csv'
 # June 22, 2023 was TOGC release date
 TOGC_START_DATE = datetime(2023, 6, 22)
 # Jan 19, 2023 was ulduar release date
 ULDUAR_START_DATE = datetime(2023, 1, 19)
 IGNORE_PREVIOUS_PHASES = True
+# TODO: Move to CLI arg
 NUM_DAYS_LOOT_IS_RECENT = 30
+# TODO: Move to CLI arg
 TMB_JSON_EXPORT_FP = 'source_data/tmb_export_20230625.json'
+# TODO: Move to CLI arg
 CURRENT_RAID_FP = 'source_data/current_raid.csv'
 
 
@@ -268,5 +272,6 @@ class RaiderDataHandler():
 
 if __name__ == '__main__':
 
+  # TODO: Move to CLI
   handler = RaiderDataHandler()
   handler.ProcessExport(TMB_JSON_EXPORT_FP)
