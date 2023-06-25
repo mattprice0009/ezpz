@@ -1,9 +1,8 @@
 import csv
-from datetime import datetime, timedelta
 import json
 import re
 import traceback
-
+from datetime import datetime, timedelta
 """
 TODO:
 - add "last loot date"
@@ -14,12 +13,15 @@ TODO:
 # TODO: Move to constants file
 MAIN_RAID_GROUP = 'Attendance'
 OUTPUT_FP = 'raider_data.csv'
+# June 22, 2023 was TOGC release date
+TOGC_START_DATE = datetime(2023, 6, 22)
 # Jan 19, 2023 was ulduar release date
 ULDUAR_START_DATE = datetime(2023, 1, 19)
 IGNORE_PREVIOUS_PHASES = True
 NUM_DAYS_LOOT_IS_RECENT = 30
-TMB_JSON_EXPORT_FP = 'source_data/tmb_export_20230613.json'
+TMB_JSON_EXPORT_FP = 'source_data/tmb_export_20230625.json'
 CURRENT_RAID_FP = 'source_data/current_raid.csv'
+
 
 # TODO: Move to constants file
 class Keys:
@@ -57,11 +59,13 @@ class Keys:
 
   IS_OF_INTEREST = '_focus'
 
+
 # TODO: Move to constants file
 class RC_VAL_SUBSTRINGS:
   BIS = 'bis'
   OS = 'offspec'
   UPGRADE = 'upgrade'
+
 
 # TODO: Move to constants file
 GENERAL_KEYS = [
@@ -120,7 +124,7 @@ class RaiderDataHandler():
     except:
       print(json.dumps(loot, sort_keys=True, indent=2, default=str))
       print(traceback.format_exc())
-      return None # TODO: Handle these exceptions instead of allowing
+      return None  # TODO: Handle these exceptions instead of allowing
       raise RuntimeError('damn')
 
   def _is_loot_recent(self, loot_date):
@@ -167,7 +171,7 @@ class RaiderDataHandler():
         # TODO: If we wanna add it here, check out the note when loot_quality
         # is null.
         continue
-      if IGNORE_PREVIOUS_PHASES and loot_date < ULDUAR_START_DATE:
+      if IGNORE_PREVIOUS_PHASES and loot_date < TOGC_START_DATE:
         # This loot was won before current phase
         continue
       raider[Keys.LOOT_TOTAL] += 1
@@ -238,7 +242,7 @@ class RaiderDataHandler():
       for k in header_row:
         row.append(raider[k])
       rows.append(row)
-  
+
     # Write output
     with open(OUTPUT_FP, 'w') as writer:
       writer.write(
